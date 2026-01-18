@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Layout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-left">
+            <div class="logo-circle">
+                <img src="https://www.svgrepo.com/show/355256/spotify.svg" alt="Spotify Logo" class="logo" width="30" height="30" id="logo">
+            </div>
+            <div class="home_logo">
+                <img src="https://www.svgrepo.com/show/485569/home.svg" alt="Home icon" class="nav-icon">
+            </div>
+            <div class="search_bar">
+                <span class="search_icon">
+                    <img src="https://www.svgrepo.com/show/508169/search.svg" alt="Search icon" class="search-icon">
+                </span>
+                <input type="text" placeholder="What do you want to play?">
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="premium-btn">Explore Premium</button>
+            <div class="install">
+                <img src="https://www.svgrepo.com/show/485561/download-circle.svg" alt="Install App" class="nav-icon">
+                <h4>Install App</h4>
+            </div>
+            <img src="https://www.svgrepo.com/show/495552/notification.svg" alt="Notifications" class="bell">
+            <div class="profile-circle">K</div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main_container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="nav1">
+                <div class="library"><p>Your Library</p></div>
+                <div class="create"><p> + Create</p></div>
+            </div>
+            <div class="box">
+                <p class="left bold">Create your first playlist</p>
+                <p class="left">it's easy we we'll help you</p>
+                <div class="create_playlist box3"><p>Create playlist</p></div>
+            </div>
+            <div class="box">
+                <p class="left bold">Let's find some podcasts to follow</p>
+                <p class="left">We'll keep you updated on new episodes</p>
+                <div class="browse box3"><p>Browse podcasts</p></div>
+            </div>
+        </div>
+
+        <!-- Main Bar -->
+        <div class="main_bar">
+            <div class="navigationbar">
+                <div class="heading"><p>Charts</p></div>
+            </div>
+            <div class="image-container">
+                <div class="card"><img src="img1.jpg" alt=""><p class="title">Top 50</p><p class="subtitle">India</p></div>
+                <div class="card"><img src="img2.jpg" alt=""><p class="title">Top 50</p><p class="subtitle">Global</p></div>
+                <div class="card"><img src="img3.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">India</p></div>
+                <div class="card"><img src="img4.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Hindi</p></div>
+                <div class="card"><img src="img5.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Tamil</p></div>
+                <div class="card"><img src="img6.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Telugu</p></div>
+                <div class="card"><img src="img7.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Punjabi</p></div>
+                <div class="card"><img src="img8.jpg" alt=""><p class="title">New Music Friday</p><p class="subtitle">Punjabi</p></div>
+                <div class="card"><img src="img9.jpg" alt=""><p class="title">Latest Telugu</p><p class="subtitle">New Music from Telugu!</p></div>
+                <div class="card"><img src="img10.jpg" alt=""><p class="title">Latest Tamil</p><p class="subtitle">New Music from Kollywood</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player Bar -->
+    <div class="player-bar">
+        <div class="song-info">
+            <img src="img1.jpg" alt="Song Cover" class="song-cover">
+            <div class="song-text">
+                <p class="song-title">Song Name</p>
+                <p class="song-artist">Artist Name</p>
+            </div>
+        </div>
+        <div class="controls">
+            <img src="https://www.svgrepo.com/show/495586/previous.svg" alt="Prev" class="control-icon prev">
+            <img src="https://www.svgrepo.com/show/526106/play.svg" alt="Play" class="control-icon play-btn">
+            <img src="https://www.svgrepo.com/show/495542/next.svg" alt="Next" class="control-icon next">
+        </div>
+        <div class="progress-container">
+            <div class="progress"></div>
+        </div>
+        <div class="extra">
+            <img src="https://www.svgrepo.com/show/499767/volume-on.svg" alt="Volume" class="control-icon">
+        </div>
+    </div>
+</body>
+</html>
