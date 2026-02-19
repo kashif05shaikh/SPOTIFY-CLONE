@@ -3,48 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Layout</title>
+    <title>Spotify Clone</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
+
+    <!-- ===== NAVBAR ===== -->
     <div class="navbar">
-        <div class="nav-left">
-            <div class="logo-circle">
-                <img src="https://www.svgrepo.com/show/355256/spotify.svg" alt="Spotify Logo" class="logo" width="30" height="30" id="logo">
-            </div>
-            <div class="home_logo">
-                <img src="https://www.svgrepo.com/show/485569/home.svg" alt="Home icon" class="nav-icon">
-            </div>
-            <div class="search_bar">
-                <span class="search_icon">
-                    <img src="https://www.svgrepo.com/show/508169/search.svg" alt="Search icon" class="search-icon">
-                </span>
-                <input type="text" placeholder="What do you want to play?">
-            </div>
+
+        <!-- Spotify Green Logo -->
+        <div class="nav-logo">
+            <svg viewBox="0 0 24 24" width="38" height="38" fill="#1db954">
+                <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
         </div>
+
+        <!-- Home Button -->
+        <a href="#" class="home-btn" title="Home">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="white">
+                <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z"/>
+            </svg>
+        </a>
+
+        <!-- Search Bar -->
+        <div class="search_bar">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a7a7a7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" placeholder="What do you want to play?">
+            <div class="search-divider"></div>
+            <!-- Browse grid icon -->
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#a7a7a7" title="Browse">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+        </div>
+
+        <!-- Right Side -->
         <div class="nav-right">
             <button class="premium-btn">Explore Premium</button>
-            <div class="install">
-                <img src="https://www.svgrepo.com/show/485561/download-circle.svg" alt="Install App" class="nav-icon">
-                <h4>Install App</h4>
+
+            <div class="install-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#a7a7a7">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 13.586-3.293-3.293a1 1 0 1 1 1.414-1.414L11 12.757V7a1 1 0 1 1 2 0v5.757l1.879-1.878a1 1 0 1 1 1.414 1.414L13 15.586a1 1 0 0 1-1.414 0z"/>
+                </svg>
+                <span>Install App</span>
             </div>
-            <img src="https://www.svgrepo.com/show/495552/notification.svg" alt="Notifications" class="bell">
+
+            <!-- Bell -->
+            <button class="icon-btn" title="Notifications">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#a7a7a7">
+                    <path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v5l-1.29 1.29A1 1 0 0 0 5 19h14a1 1 0 0 0 .71-1.71L18 16z"/>
+                </svg>
+            </button>
+
+            <!-- Profile -->
             <div class="profile-circle">K</div>
         </div>
     </div>
 
-    <!-- Main Container -->
+    <!-- ===== MAIN CONTAINER ===== -->
     <div class="main_container">
+
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="nav1">
-                <div class="library"><p>Your Library</p></div>
-                <div class="create"><p> + Create</p></div>
+                <div class="library">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="white" style="flex-shrink:0">
+                        <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1z"/>
+                    </svg>
+                    <p>Your Library</p>
+                </div>
+                <div class="create">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                    </svg>
+                </div>
             </div>
             <div class="box">
                 <p class="left bold">Create your first playlist</p>
-                <p class="left">it's easy we we'll help you</p>
+                <p class="left">It's easy, we'll help you</p>
                 <div class="create_playlist box3"><p>Create playlist</p></div>
             </div>
             <div class="box">
@@ -60,40 +101,105 @@
                 <div class="heading"><p>Charts</p></div>
             </div>
             <div class="image-container">
-                <div class="card"><img src="img1.jpg" alt=""><p class="title">Top 50</p><p class="subtitle">India</p></div>
-                <div class="card"><img src="img2.jpg" alt=""><p class="title">Top 50</p><p class="subtitle">Global</p></div>
-                <div class="card"><img src="img3.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">India</p></div>
-                <div class="card"><img src="img4.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Hindi</p></div>
-                <div class="card"><img src="img5.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Tamil</p></div>
-                <div class="card"><img src="img6.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Telugu</p></div>
-                <div class="card"><img src="img7.jpg" alt=""><p class="title">Hot Hits</p><p class="subtitle">Punjabi</p></div>
-                <div class="card"><img src="img8.jpg" alt=""><p class="title">New Music Friday</p><p class="subtitle">Punjabi</p></div>
-                <div class="card"><img src="img9.jpg" alt=""><p class="title">Latest Telugu</p><p class="subtitle">New Music from Telugu!</p></div>
-                <div class="card"><img src="img10.jpg" alt=""><p class="title">Latest Tamil</p><p class="subtitle">New Music from Kollywood</p></div>
+                <div class="card" data-index="0">
+                    <div class="card-img-wrap">
+                        <img src="img1.jpg" alt="Top 50 India">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Top 50</p><p class="subtitle">India</p>
+                </div>
+                <div class="card" data-index="1">
+                    <div class="card-img-wrap">
+                        <img src="img2.jpg" alt="Top 50 Global">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Top 50</p><p class="subtitle">Global</p>
+                </div>
+                <div class="card" data-index="2">
+                    <div class="card-img-wrap">
+                        <img src="img3.jpg" alt="Hot Hits India">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Hot Hits</p><p class="subtitle">India</p>
+                </div>
+                <div class="card" data-index="3">
+                    <div class="card-img-wrap">
+                        <img src="img4.jpg" alt="Hot Hits Hindi">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Hot Hits</p><p class="subtitle">Hindi</p>
+                </div>
+                <div class="card" data-index="4">
+                    <div class="card-img-wrap">
+                        <img src="img5.jpg" alt="Hot Hits Tamil">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Hot Hits</p><p class="subtitle">Tamil</p>
+                </div>
+                <div class="card" data-index="5">
+                    <div class="card-img-wrap">
+                        <img src="img6.jpg" alt="Hot Hits Telugu">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Hot Hits</p><p class="subtitle">Telugu</p>
+                </div>
+                <div class="card" data-index="6">
+                    <div class="card-img-wrap">
+                        <img src="img7.jpg" alt="Hot Hits Punjabi">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Hot Hits</p><p class="subtitle">Punjabi</p>
+                </div>
+                <div class="card" data-index="7">
+                    <div class="card-img-wrap">
+                        <img src="img8.jpg" alt="New Music Friday Punjabi">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">New Music Friday</p><p class="subtitle">Punjabi</p>
+                </div>
+                <div class="card" data-index="8">
+                    <div class="card-img-wrap">
+                        <img src="img9.jpg" alt="Latest Telugu">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Latest Telugu</p><p class="subtitle">New Music from Telugu!</p>
+                </div>
+                <div class="card" data-index="9">
+                    <div class="card-img-wrap">
+                        <img src="img10.jpg" alt="Latest Tamil">
+                        <div class="play-overlay">&#9654;</div>
+                    </div>
+                    <p class="title">Latest Tamil</p><p class="subtitle">New Music from Kollywood</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Music Player Bar -->
+    <audio id="audioPlayer"></audio>
+
+    <!-- ===== PLAYER BAR ===== -->
     <div class="player-bar">
         <div class="song-info">
-            <img src="img1.jpg" alt="Song Cover" class="song-cover">
+            <img src="img1.jpg" alt="Song Cover" class="song-cover" id="playerCover">
             <div class="song-text">
-                <p class="song-title">Song Name</p>
-                <p class="song-artist">Artist Name</p>
+                <p class="song-title" id="songTitle">Song Name</p>
+                <p class="song-artist" id="songArtist">Select a song</p>
             </div>
         </div>
         <div class="controls">
-            <img src="https://www.svgrepo.com/show/495586/previous.svg" alt="Prev" class="control-icon prev">
-            <img src="https://www.svgrepo.com/show/526106/play.svg" alt="Play" class="control-icon play-btn">
-            <img src="https://www.svgrepo.com/show/495542/next.svg" alt="Next" class="control-icon next">
+            <img src="https://www.svgrepo.com/show/495586/previous.svg" alt="Prev" class="control-icon" id="prevBtn">
+            <img src="https://www.svgrepo.com/show/526106/play.svg" alt="Play" class="control-icon play-btn" id="playPauseBtn">
+            <img src="https://www.svgrepo.com/show/495542/next.svg" alt="Next" class="control-icon" id="nextBtn">
         </div>
-        <div class="progress-container">
-            <div class="progress"></div>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress" id="progressBar"></div>
         </div>
         <div class="extra">
-            <img src="https://www.svgrepo.com/show/499767/volume-on.svg" alt="Volume" class="control-icon">
+            <img src="https://www.svgrepo.com/show/499767/volume-on.svg" alt="Volume" class="control-icon" id="volumeIcon">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
         </div>
     </div>
+
+    <script src="INDEX.JS"></script>
 </body>
 </html>
