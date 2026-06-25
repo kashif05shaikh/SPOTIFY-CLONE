@@ -1,22 +1,16 @@
-// =============================================
-//   SPOTIFY CLONE — INDEX.JS
-// =============================================
-
-// --- Song Data ---
 const songs = [
-    { file: "song1.mp3",  title: "Top 50",          artist: "India",                  cover: "img1.jpg"  },
-    { file: "song2.mp3",  title: "Top 50",          artist: "Global",                 cover: "img2.jpg"  },
-    { file: "song3.mp3",  title: "Hot Hits",        artist: "India",                  cover: "img3.jpg"  },
-    { file: "song4.mp3",  title: "Hot Hits",        artist: "Hindi",                  cover: "img4.jpg"  },
-    { file: "song5.mp3",  title: "Hot Hits",        artist: "Tamil",                  cover: "img5.jpg"  },
-    { file: "song6.mp3",  title: "Hot Hits",        artist: "Telugu",                 cover: "img6.jpg"  },
-    { file: "song7.mp3",  title: "Hot Hits",        artist: "Punjabi",                cover: "img7.jpg"  },
-    { file: "song8.mp3",  title: "New Music Friday", artist: "Punjabi",               cover: "img8.jpg"  },
-    { file: "song9.mp3",  title: "Latest Telugu",   artist: "New Music from Telugu!", cover: "img9.jpg"  },
-    { file: "song10.mp3", title: "Latest Tamil",    artist: "New Music from Kollywood", cover: "img10.jpg" },
+    { file: "song1.mp3",  title: "Top 50",           artist: "India",                   cover: "img1.jpg"  },
+    { file: "song2.mp3",  title: "Top 50",           artist: "Global",                  cover: "img2.jpg"  },
+    { file: "song3.mp3",  title: "Hot Hits",         artist: "India",                   cover: "img3.jpg"  },
+    { file: "song4.mp3",  title: "Hot Hits",         artist: "Hindi",                   cover: "img4.jpg"  },
+    { file: "song5.mp3",  title: "Hot Hits",         artist: "Tamil",                   cover: "img5.jpg"  },
+    { file: "song6.mp3",  title: "Hot Hits",         artist: "Telugu",                  cover: "img6.jpg"  },
+    { file: "song7.mp3",  title: "Hot Hits",         artist: "Punjabi",                 cover: "img7.jpg"  },
+    { file: "song8.mp3",  title: "New Music Friday", artist: "Punjabi",                 cover: "img8.jpg"  },
+    { file: "song9.mp3",  title: "Latest Telugu",    artist: "New Music from Telugu!",  cover: "img9.jpg"  },
+    { file: "song10.mp3", title: "Latest Tamil",     artist: "New Music from Kollywood",cover: "img10.jpg" },
 ];
 
-// --- DOM Elements ---
 const audioPlayer       = document.getElementById("audioPlayer");
 const playPauseBtn      = document.getElementById("playPauseBtn");
 const prevBtn           = document.getElementById("prevBtn");
@@ -30,33 +24,33 @@ const volumeSlider      = document.getElementById("volumeSlider");
 const volumeIcon        = document.getElementById("volumeIcon");
 const cards             = document.querySelectorAll(".card");
 
-// --- State ---
 let currentIndex = -1;
-let isPlaying    = false;
-
-// =============================================
-//   CORE FUNCTIONS
-// =============================================
+let isPlaying = false;
 
 function loadSong(index) {
     const song = songs[index];
     currentIndex = index;
 
     audioPlayer.src = song.file;
-
-    // Update player bar UI
-    songTitle.textContent  = song.title;
+    songTitle.textContent = song.title;
     songArtist.textContent = song.artist;
-    playerCover.src        = song.cover;
+    playerCover.src = song.cover;
 
-    // Highlight active card
+    progressBar.style.width = "0%";
+
     cards.forEach(c => c.classList.remove("active"));
-    cards[index].classList.add("active");
-    cards[index].scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+    if (cards[index]) {
+        cards[index].classList.add("active");
+        cards[index].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
 }
 
 function playSong() {
-    audioPlayer.play();
+    audioPlayer.play().catch(() => {});
     isPlaying = true;
     playPauseBtn.src = "https://www.svgrepo.com/show/495574/pause.svg";
 }
@@ -72,10 +66,6 @@ function playAtIndex(index) {
     playSong();
 }
 
-// =============================================
-//   CARD CLICK — Play song on card click
-// =============================================
-
 cards.forEach((card, index) => {
     card.addEventListener("click", () => {
         if (currentIndex === index && isPlaying) {
@@ -86,122 +76,143 @@ cards.forEach((card, index) => {
     });
 });
 
-// =============================================
-//   PLAY / PAUSE BUTTON
-// =============================================
-
 playPauseBtn.addEventListener("click", () => {
     if (currentIndex === -1) {
-        // Nothing loaded yet — start from first song
         playAtIndex(0);
         return;
     }
-    if (isPlaying) {
-        pauseSong();
-    } else {
-        playSong();
-    }
-});
 
-// =============================================
-//   NEXT BUTTON
-// =============================================
+    isPlaying ? pauseSong() : playSong();
+});
 
 nextBtn.addEventListener("click", () => {
-    const nextIndex = (currentIndex + 1) % songs.length;
-    playAtIndex(nextIndex);
+    playAtIndex((currentIndex + 1) % songs.length);
 });
 
-// =============================================
-//   PREVIOUS BUTTON
-// =============================================
-
 prevBtn.addEventListener("click", () => {
-    // If more than 3 seconds in, restart current song instead
     if (audioPlayer.currentTime > 3) {
         audioPlayer.currentTime = 0;
         return;
     }
-    const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
-    playAtIndex(prevIndex);
+
+    playAtIndex((currentIndex - 1 + songs.length) % songs.length);
 });
 
-// =============================================
-//   PROGRESS BAR — Update as song plays
-// =============================================
-
 audioPlayer.addEventListener("timeupdate", () => {
-    if (audioPlayer.duration) {
-        const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    if (audioPlayer.duration && !isNaN(audioPlayer.duration)) {
+        const percent =
+            (audioPlayer.currentTime / audioPlayer.duration) * 100;
+
         progressBar.style.width = percent + "%";
     }
 });
 
-// =============================================
-//   PROGRESS BAR — Click to seek
-// =============================================
-
 progressContainer.addEventListener("click", (e) => {
-    const rect     = progressContainer.getBoundingClientRect();
-    const clickX   = e.clientX - rect.left;
-    const percent  = clickX / rect.width;
-    audioPlayer.currentTime = percent * audioPlayer.duration;
+    if (!audioPlayer.duration) return;
+
+    const rect = progressContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percent = Math.max(
+        0,
+        Math.min(1, clickX / rect.width)
+    );
+
+    audioPlayer.currentTime =
+        percent * audioPlayer.duration;
 });
 
-// =============================================
-//   VOLUME SLIDER
-// =============================================
+progressContainer.addEventListener(
+    "touchstart",
+    handleSeekTouch,
+    { passive: true }
+);
+
+progressContainer.addEventListener(
+    "touchmove",
+    handleSeekTouch,
+    { passive: true }
+);
+
+function handleSeekTouch(e) {
+    if (!audioPlayer.duration) return;
+
+    const rect = progressContainer.getBoundingClientRect();
+    const touchX = e.touches[0].clientX - rect.left;
+    const percent = Math.max(
+        0,
+        Math.min(1, touchX / rect.width)
+    );
+
+    audioPlayer.currentTime =
+        percent * audioPlayer.duration;
+}
 
 volumeSlider.addEventListener("input", () => {
     audioPlayer.volume = volumeSlider.value;
 
-    // Swap volume icon based on level
-    if (volumeSlider.value == 0) {
-        volumeIcon.src = "https://www.svgrepo.com/show/499769/volume-mute.svg";
-    } else {
-        volumeIcon.src = "https://www.svgrepo.com/show/499767/volume-on.svg";
-    }
+    volumeIcon.src =
+        volumeSlider.value == 0
+            ? "https://www.svgrepo.com/show/499769/volume-mute.svg"
+            : "https://www.svgrepo.com/show/499767/volume-on.svg";
 });
 
-// Click volume icon to mute/unmute
 volumeIcon.addEventListener("click", () => {
     if (audioPlayer.volume > 0) {
-        volumeSlider.value  = 0;
-        audioPlayer.volume  = 0;
-        volumeIcon.src      = "https://www.svgrepo.com/show/499769/volume-mute.svg";
+        volumeSlider.value = 0;
+        audioPlayer.volume = 0;
+        volumeIcon.src =
+            "https://www.svgrepo.com/show/499769/volume-mute.svg";
     } else {
-        volumeSlider.value  = 1;
-        audioPlayer.volume  = 1;
-        volumeIcon.src      = "https://www.svgrepo.com/show/499767/volume-on.svg";
+        volumeSlider.value = 1;
+        audioPlayer.volume = 1;
+        volumeIcon.src =
+            "https://www.svgrepo.com/show/499767/volume-on.svg";
     }
 });
 
-// =============================================
-//   AUTO PLAY NEXT — When song ends
-// =============================================
-
 audioPlayer.addEventListener("ended", () => {
-    const nextIndex = (currentIndex + 1) % songs.length;
-    playAtIndex(nextIndex);
+    playAtIndex((currentIndex + 1) % songs.length);
 });
 
-// =============================================
-//   KEYBOARD SHORTCUTS
-// =============================================
-
 document.addEventListener("keydown", (e) => {
-    if (e.target.tagName === "INPUT") return; // Don't hijack search bar
+    if (e.target.tagName === "INPUT") return;
 
     switch (e.code) {
         case "Space":
             e.preventDefault();
             playPauseBtn.click();
             break;
+
         case "ArrowRight":
             nextBtn.click();
             break;
+
         case "ArrowLeft":
             prevBtn.click();
+            break;
+
+        case "ArrowUp":
+            e.preventDefault();
+            volumeSlider.value = Math.min(
+                1,
+                parseFloat(volumeSlider.value) + 0.05
+            );
+
+            volumeSlider.dispatchEvent(
+                new Event("input")
+            );
+            break;
+
+        case "ArrowDown":
+            e.preventDefault();
+            volumeSlider.value = Math.max(
+                0,
+                parseFloat(volumeSlider.value) - 0.05
+            );
+
+            volumeSlider.dispatchEvent(
+                new Event("input")
+            );
             break;
     }
 });
